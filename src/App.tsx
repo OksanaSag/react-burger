@@ -1,26 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
+import { data } from "./components/utils/data";
 import './App.css';
+import AppHeader from './components/header/AppHeader';
+import BurgerIngredients from './components/burgerIngredients/BurgerIngredients'
+import BurgerConstructor from './components/burgerConstructor/BurgerConstructor'
 
 function App() {
+  const bun = data.find(element => element.type === 'bun')
+  const ingredients = data.filter(element => element.type !== 'bun')
   return (
-    <div className="App">
+    <>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <AppHeader />
       </header>
-    </div>
+      <main className="main">
+        <BurgerIngredients />
+        <BurgerConstructor bun={bun} ingredients={ingredients} />
+      </main>
+    </>
   );
 }
-
 export default App;

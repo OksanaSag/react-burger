@@ -1,0 +1,30 @@
+.container {
+    width: 600px;
+    padding-bottom: 52px;
+    box-sizing: border-box;
+}
+.totalPrice {
+    display: flex;
+    justify-content: flex-end;
+    gap: 40px;
+    align-items: center;
+}
+.burgerIngredient::-webkit-scrollbar-track {
+    background: #2F2F37;
+}
+.burgerIngredient::-webkit-scrollbar-thumb {
+    background-color: #8585AD;
+}
+.burgerIngredient {
+    overflow: scroll;
+    height: 600px;
+    gap: 16px;
+    display: flex;
+    flex-direction: column; 
+    padding-left: 0;
+}
+.burgerIngredient::-webkit-scrollbar {
+  width: 8px;
+  height: 0;
+  background-color: #2F2F37;
+}
