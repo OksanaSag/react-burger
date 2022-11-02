@@ -3,8 +3,8 @@ import {data} from '../utils/data';
 import BurgerIngredientsStyles from './BurgerIngredients.module.css';
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 import IndredientTabs from '../IndredientTabs/IndredientTabs';
-export default function BurgerIngredients  (){   
-    
+
+export default function BurgerIngredients  (){      
     const bunArray = data.filter(item => item.type === 'bun')
     const sauceArray = data.filter(item => item.type === 'sauce')
     const mainArray = data.filter(item => item.type === 'main')

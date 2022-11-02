@@ -12,14 +12,14 @@ export default function ListIngredients ({ ingredients, bun }) {
                     text={bun.name + ' (верх)'}
                     thumbnail={bun.image}
                     price={bun.price}
-                    isLocked={true}
+                    isLocked
                     type="top"
                     extraClass="mt-25 ml-8"
                 />
             }
             <ul className={ListIngredientsStyles.listIngredient + ' mb-4 mt-4'}>
-                {ingredients &&
-                    ingredients.map((item) => (
+                {
+                    ingredients?.map((item) => (
                         <li style={{ display: 'flex', alignItems: 'center'}} key={item._id}>
                             <DragIcon />
                             <ConstructorElement
@@ -37,7 +37,7 @@ export default function ListIngredients ({ ingredients, bun }) {
                     text={bun.name + ' (низ)'}
                     thumbnail={bun.image}
                     price={bun.price}
-                    isLocked={true}
+                    isLocked
                     type="bottom"
                     extraClass="ml-8"
                 />
