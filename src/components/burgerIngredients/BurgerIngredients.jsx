@@ -1,32 +1,10 @@
 import React from 'react';
 import {data} from '../utils/data';
 import BurgerIngredientsStyles from './BurgerIngredients.module.css';
-import { Tab, CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
-import { Link } from 'react-scroll';
-
+import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
+import IndredientTabs from '../IndredientTabs/IndredientTabs';
 export default function BurgerIngredients  (){   
-    const List1 = () => {
-        const [current, setCurrent] = React.useState('one')
-        return (
-            <nav className={'pt-5 pb-10'} style={{ display: 'flex' }}>
-                <Link containerId="containerElement" to="bun" spy={true} smooth={true}>
-                    <Tab value="one" active={current === 'one'} onClick={setCurrent}>
-                        Булки
-                    </Tab>
-                </Link>
-                <Link containerId="containerElement" to="sauce" spy={true} smooth={true}>
-                    <Tab value="two" active={current === 'two'} onClick={setCurrent}>
-                        Соусы
-                    </Tab>
-                </Link>
-                <Link containerId="containerElement" to="main" spy={true} smooth={true}>
-                    <Tab value="three" active={current === 'three'} onClick={setCurrent}>
-                        Начинки
-                    </Tab>
-                </Link>
-            </nav>
-        )
-    }
+    
     const bunArray = data.filter(item => item.type === 'bun')
     const sauceArray = data.filter(item => item.type === 'sauce')
     const mainArray = data.filter(item => item.type === 'main')
@@ -73,7 +51,7 @@ export default function BurgerIngredients  (){
         <div>
             <div>
                 <h1 className={'pt-10 pb-5 text text_type_main-large'}>Соберите бургер</h1>
-                <div><List1/></div>
+                <div><IndredientTabs/></div>
                 <div id="containerElement" className={BurgerIngredientsStyles.burgerIngredient}>
                 <h2 className={' text text_type_main-medium'} id='bun'>Булки</h2>
                 <section className={BurgerIngredientsStyles.tabs + ' pt-6 pb-10 pl-4 text text_type_main-default'}>{bunList}</section>
