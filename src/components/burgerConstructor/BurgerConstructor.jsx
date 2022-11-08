@@ -1,10 +1,10 @@
 import React from 'react';
 import BurgerConstructorStyles from './BurgerConstructor.module.css';
 import ListIngredients from '../listIngredients/ListIngredients';
-import { data } from "../utils/data";
+import {  } from "../utils/data";
 import {Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
-export default function BurgerConstructor () {
+export default function BurgerConstructor ({data}) {
     const total = 1000;
     const bun = data.find(element => element.type === 'bun')
     const ingredients = data.filter(element => element.type !== 'bun')
