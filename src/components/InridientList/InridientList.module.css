@@ -1,0 +1,26 @@
+.section {
+    width: 272px;
+    height: 208px;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    }
+  .fat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+  }
+  .categories {
+    width: 240px;
+    height: 120px;
+  }
+  .categories::-webkit-scrollbar {
+    width: 8px;
+  }
+  .categories::-webkit-scrollbar-track {
+    background: rgba(47, 47, 55, 1);
+  }
+  .categories::-webkit-scrollbar-thumb {
+    background-color: rgba(133, 133, 173, 1);
+  }

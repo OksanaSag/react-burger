@@ -1,69 +1,59 @@
 import React, { useState } from 'react';
-import {} from '../utils/data';
 import BurgerIngredientsStyles from './BurgerIngredients.module.css';
-import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 import IndredientTabs from '../IndredientTabs/IndredientTabs';
+import Modal from '../Modal/Modal';
+import IngredientDetails from '../IngredientDetails/IngredientDetails'
+import InridientList from '../InridientList/InridientList'
 
-export default function BurgerIngredients  ({data}){    
-  
+export default function BurgerIngredients  ({data}){  
     const bunArray = data.filter(item => item.type === 'bun')
     const sauceArray = data.filter(item => item.type === 'sauce')
-    const mainArray = data.filter(item => item.type === 'main')
-    const bunList = bunArray.map((item) => {
-            return (
-                <div key={item._id} className={BurgerIngredientsStyles.section}>
-                    <img src={item.image} className={BurgerIngredientsStyles.categories} alt="" />
-                    <Counter count={item.__v} size={item.__v <= 9 ? 'default' : 'small'}/>
-                    <div className={BurgerIngredientsStyles.fat + ' pt-1 pb-1'}>
-                        <span style={{ fontFamily: 'Iceland', fontSize: '28px'}}>{item.fat}</span>
-                        <CurrencyIcon type="primary" />
-                    </div>
-                    <p>{item.name}</p>
-                </div>
-            )
-    })
-    const sauceList = sauceArray.map((item) => {
-        return (
-            <div key={item._id} className={BurgerIngredientsStyles.section}>
-                <img src={item.image} className={BurgerIngredientsStyles.categories} alt="" />
-                <Counter count={item.__v} size={item.__v <= 9 ? 'default' : 'small'} />
-                <div className={BurgerIngredientsStyles.fat + ' pt-1 pb-1'}>
-                    <span style={{ fontFamily: 'Iceland', fontSize: '28px'}}>{item.fat}</span>
-                    <CurrencyIcon type="primary" />
-                </div>
-                <p>{item.name}</p>
-            </div>
-        )
-    })
-    const mainList = mainArray.map((item) => {
-        return (
-            <div key={item._id} className={BurgerIngredientsStyles.section}>
-                <img src={item.image} className={BurgerIngredientsStyles.categories} alt="" />
-                <Counter count={item.__v} size={item.__v <= 9 ? 'default' : 'small'} />
-                <div className={BurgerIngredientsStyles.fat + ' pt-1 pb-1'}>
-                    <span style={{ fontFamily: 'Iceland', fontSize: '28px'}}>{item.fat}</span>
-                    <CurrencyIcon type="primary" />
-                </div>
-                <p>{item.name}</p>
-            </div>
-        )
-    })
+    const mainArray = data.filter(item => item.type === 'main')  
+    const [open, setOpen] = useState(false)
+    const [info, setInfo] = useState()
+
+    function openOrderDetails (value) {
+        setOpen(true)
+        setInfo(value)
+    }
+
     return (
         <div>
-            <div>
-                <h1 className={'pt-10 pb-5 text text_type_main-large'}>Соберите бургер</h1>
-                <div><IndredientTabs/></div>
-                <div id="containerElement" className={BurgerIngredientsStyles.burgerIngredient}>
-                    <h2 className={' text text_type_main-medium'} id='bun'>Булки</h2>
-                    <section className={BurgerIngredientsStyles.tabs + ' pt-6 pb-10 pl-4 text text_type_main-default'}>{bunList}</section>
-                    <h2 className={' text text_type_main-medium'} id='sauce'>Соусы</h2>
-                    <section className={BurgerIngredientsStyles.tabs + ' pt-6 pb-10 pl-4 text text_type_main-default'}>{sauceList}</section>
-                    <h2 className={' text text_type_main-medium'} id='main'>Начинки</h2>
-                    <section className={BurgerIngredientsStyles.tabs + ' pt-6 pb-10 pl-4 text text_type_main-default'}>{mainList}</section>
-                </div>
-            </div>
+            <h1 className={'pt-10 pb-5 text text_type_main-large'}>Соберите бургер</h1>
+            <div><IndredientTabs/></div>
+            <section  id='containerElement' className={BurgerIngredientsStyles.burgerIngredient}>
+                <h2 className={' text text_type_main-medium'} id='bun'>Булки</h2>
+                <ul  className={BurgerIngredientsStyles.tabs + ' pt-6 pb-10 pl-4 text text_type_main-default'}>
+                    {bunArray?.map((item) => (
+                        <li onClick={() => openOrderDetails(item)} style={{ listStyleType: 'none'}} key={item._id}>
+                            <InridientList {...item} key={item._id} />
+                        </li>
+                        ))
+                    }
+                </ul>
+                <h2 className={' text text_type_main-medium'} id='sauce'>Соусы</h2>
+                <ul className={BurgerIngredientsStyles.tabs + ' pt-6 pb-10 pl-4 text text_type_main-default'}>
+                    {sauceArray?.map((item) => (
+                        <li onClick={() => openOrderDetails(item)} style={{ listStyleType: 'none'}} key={item._id}>
+                            <InridientList {...item} key={item._id} />
+                        </li>
+                        ))
+                    }
+                </ul>
+                <h2 className={' text text_type_main-medium'} id='main'>Начинки</h2>
+                <ul className={BurgerIngredientsStyles.tabs + ' pt-6 pb-10 pl-4 text text_type_main-default'}>
+                    {mainArray?.map((item) => (
+                        <li onClick={() => openOrderDetails(item)} style={{ listStyleType: 'none'}} key={item._id}>
+                            <InridientList {...item} key={item._id} />
+                        </li>
+                        ))
+                    }
+                </ul>
+            </section>
+            <Modal title='Детали ингредиента' open={open} onClose={() => setOpen(false)}>
+            <IngredientDetails data={info} />
+            </ Modal>
         </div>
     )
-       
 }
   

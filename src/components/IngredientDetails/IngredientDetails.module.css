@@ -1,0 +1,17 @@
+.container {
+    min-width: 112px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ingredientDetail {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.image{
+    display: flex; 
+    margin: auto; 
+    height: 240px; 
+    width: 520px
+}

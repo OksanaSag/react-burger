@@ -45,11 +45,8 @@ export default function ListIngredients ({ ingredients, bun }) {
         </div>
     )
     }
-
-    
     export const ingredientPropTypes = {
         ingredients: PropTypes.arrayOf( PropTypes.shape(ingredientTypes)),
         bun: PropTypes.shape(ingredientTypes)
     }
-    
     ListIngredients.propTypes = ingredientPropTypes
