@@ -3,24 +3,25 @@ import IngredientDetailsStyle from './IngredientDetails.module.css';
 
 export default function IngredientDetails ({ data }) {
     const composition = data
-         [
-            {
-                name: 'Калории, ккал',
-                value: data.calories
-            },
-            {
-                name: 'Белки, г',
-                value: data.proteins
-            },
-            {
-                name: 'Жиры, г',
-                value: data.fat
-            },
-            {
-                name: 'Углеводы, г',
-                value: data.carbohydrates
-            }
-        ]
+    ? [
+        {
+            name: 'Калории, ккал',
+            value: data.calories
+        },
+        {
+            name: 'Белки, г',
+            value: data.proteins
+        },
+        {
+            name: 'Жиры, г',
+            value: data.fat
+        },
+        {
+            name: 'Углеводы, г',
+            value: data.carbohydrates
+        }
+    ]
+    : []
 
     return (
         <>
@@ -29,7 +30,7 @@ export default function IngredientDetails ({ data }) {
                 {data.name}
             </p>
             <ul className={IngredientDetailsStyle.ingredientDetail + ' mt-8 mb-15'}>
-                {composition?.map((item, index) => (
+                {composition.map((item, index) => (
                      <li {...item} key={index}  className={IngredientDetailsStyle.container}>
                      <span className='text text_type_main-default'>
                          {item.name}
