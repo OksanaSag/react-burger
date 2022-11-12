@@ -1,5 +1,6 @@
 import OrderDetailsStyle from './OrderDetails.module.css';
 import image from "../images/done.svg";
+import PropTypes from 'prop-types';
 
 export default function OrderDetail ({ orderId }) {
     return (
@@ -19,4 +20,8 @@ export default function OrderDetail ({ orderId }) {
             </p>
         </div>
     )
+}
+
+OrderDetail.propTypes = {
+    orderId: PropTypes.number
 }

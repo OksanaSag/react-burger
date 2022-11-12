@@ -4,15 +4,14 @@ import ListIngredients from '../listIngredients/ListIngredients';
 import {Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import OrderDetail from '../OrderDetails/OrderDetails'
 import Modal from'../Modal/Modal'
+import getRandomId from '../utils/functions'
 
 export default function BurgerConstructor ({data}) {
     const [open, setOpen] = useState(false)
     function openOrderDetails () {
         setOpen(true)
     }
-    function getRandomId(min, max) {
-        return Math.floor(Math.random() * (max - min) + min);
-      }
+    
     const total = 1000;
     const bun = data.find(element => element.type === 'bun')
     const ingredients = data.filter(element => element.type !== 'bun')

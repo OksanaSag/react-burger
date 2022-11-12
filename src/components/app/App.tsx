@@ -5,7 +5,7 @@ import BurgerIngredients from '../burgerIngredients/BurgerIngredients';
 import BurgerConstructor from '../burgerConstructor/BurgerConstructor';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorFallback } from '../ErrorFallback/ErrorFallback';
-import {url} from '../utils/constans'
+import {getUrl} from '../utils/api'
 
 export default function App() {
   const [state, setState] = useState({
@@ -17,13 +17,7 @@ export default function App() {
   useEffect(() => {
     const getIngredients = async () => {
       setState({ data: [], hasError: false, isLoaded: false });
-      await fetch(url)
-        .then(res => {
-            if (res.ok) {
-                return res.json()
-            }
-            return Promise.reject(`Error ${res.status}`)
-        })
+      await getUrl()
         .then(res => {setState({ data: res.data, hasError: false, isLoaded: true })
       })
         .catch(err => {

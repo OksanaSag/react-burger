@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import BurgerIngredientsStyles from './BurgerIngredients.module.css';
 import IndredientTabs from '../IndredientTabs/IndredientTabs';
 import Modal from '../Modal/Modal';
-import IngredientDetails from '../IngredientDetails/IngredientDetails'
-import InridientList from '../InridientList/InridientList'
+import IngredientDetails from '../IngredientDetails/IngredientDetails';
+import InredientList from '../InredientList/InredientList';
+import PropTypes from 'prop-types';
 
 export default function BurgerIngredients  ({data}){  
     const bunArray = data.filter(item => item.type === 'bun')
@@ -26,7 +27,7 @@ export default function BurgerIngredients  ({data}){
                 <ul  className={BurgerIngredientsStyles.tabs + ' pt-6 pb-10 pl-4 text text_type_main-default'}>
                     {bunArray?.map((item) => (
                         <li onClick={() => openOrderDetails(item)} style={{ listStyleType: 'none'}} key={item._id}>
-                            <InridientList {...item} key={item._id} />
+                            <InredientList {...item} key={item._id} />
                         </li>
                         ))
                     }
@@ -35,7 +36,7 @@ export default function BurgerIngredients  ({data}){
                 <ul className={BurgerIngredientsStyles.tabs + ' pt-6 pb-10 pl-4 text text_type_main-default'}>
                     {sauceArray?.map((item) => (
                         <li onClick={() => openOrderDetails(item)} style={{ listStyleType: 'none'}} key={item._id}>
-                            <InridientList {...item} key={item._id} />
+                            <InredientList {...item} key={item._id} />
                         </li>
                         ))
                     }
@@ -44,7 +45,7 @@ export default function BurgerIngredients  ({data}){
                 <ul className={BurgerIngredientsStyles.tabs + ' pt-6 pb-10 pl-4 text text_type_main-default'}>
                     {mainArray?.map((item) => (
                         <li onClick={() => openOrderDetails(item)} style={{ listStyleType: 'none'}} key={item._id}>
-                            <InridientList {...item} key={item._id} />
+                            <InredientList {...item} key={item._id} />
                         </li>
                         ))
                     }
@@ -57,3 +58,7 @@ export default function BurgerIngredients  ({data}){
     )
 }
   
+BurgerIngredients.propTypes = {
+    _id: PropTypes.string,
+    type: PropTypes.string
+}

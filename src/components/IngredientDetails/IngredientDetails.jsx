@@ -44,3 +44,10 @@ export default function IngredientDetails ({ data }) {
         </>
     )
 }
+
+
+IngredientDetails.propTypes = {
+    image: PropTypes.string,
+    name: PropTypes.string,
+    value: PropTypes.number
+}

@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 import ModalOverlay  from '../ModalOverlay/ModalOverlay'
 import ModalStyles from './Modal.module.css';
@@ -44,3 +45,10 @@ export default function Modal (props) {
             </>), modalRoot);
     } return null;
 } 
+
+Modal.propTypes = {
+    onClose: PropTypes.func,
+    title: PropTypes.string,
+    onClick: PropTypes.func,
+    open: PropTypes.bool
+};
