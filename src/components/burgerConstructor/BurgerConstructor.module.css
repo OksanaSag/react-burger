@@ -1,0 +1,11 @@
+.container {
+    width: 600px;
+    padding-bottom: 52px;
+    box-sizing: border-box;
+}
+.totalPrice {
+    display: flex;
+    justify-content: flex-end;
+    gap: 40px;
+    align-items: center;
+}

@@ -1,0 +1,48 @@
+  .burgerIngredient h2 {
+      margin: 0;
+  }
+  .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin: 0;
+  }
+  .fatPosition{
+      position: absolute;
+  }
+  .burgerIngredient{
+      width: 600px;
+      display: flex;
+      flex-direction: column;
+      height: 756px;
+      overflow: scroll;
+  }
+  .burgerIngredient::-webkit-scrollbar {
+      width: 8px;
+      height: 0; 
+      background-color: #2F2F37;
+  }
+  .burgerIngredient::-webkit-scrollbar-thumb {
+      background-color: #8585AD;
+  }
+  .burgerIngredient h3{
+      font-family: 'JetBrains Mono';
+      font-weight: 700;
+      font-size: 36px;
+  }
+  .tabMenu{
+      display: flex;
+      font-family: "JetBrains Mono";
+      font-weight: 400;
+      font-size: 16px;
+  }
+  .list{
+      height: 756px;
+      overflow-y: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+  }
+  .ingredientTitle{
+      width: 600px;
+  }
