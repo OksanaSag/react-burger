@@ -1,12 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import BurgerConstructorStyles from './BurgerConstructor.module.css';
 import ListIngredients from '../listIngredients/ListIngredients';
 import {Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import OrderDetail from '../OrderDetails/OrderDetails'
 import Modal from'../Modal/Modal'
-import getRandomId from '../utils/functions'
+import getRandomId from '../utils/functions';
+import { Context } from '../Context/Context';
 
-export default function BurgerConstructor ({data}) {
+export default function BurgerConstructor () { 
+    const data = useContext(Context);
+    console.log({data})
     const [open, setOpen] = useState(false)
     function openOrderDetails () {
         setOpen(true)
@@ -15,6 +18,7 @@ export default function BurgerConstructor ({data}) {
     const total = 1000;
     const bun = data.find(element => element.type === 'bun')
     const ingredients = data.filter(element => element.type !== 'bun')
+    
    
     return (
             <div className={BurgerConstructorStyles.container + ' pl-4'}>

@@ -6,6 +6,7 @@ import BurgerConstructor from '../burgerConstructor/BurgerConstructor';
 import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorFallback } from '../ErrorFallback/ErrorFallback';
 import {getUrl} from '../utils/api'
+import { Context } from '../Context/Context';
 
 export default function App() {
   const [state, setState] = useState({
@@ -36,8 +37,10 @@ export default function App() {
           {state.hasError &&  
             <ErrorFallback/>}
             <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <Context.Provider value={state.data}>
           {state.isLoaded && <BurgerIngredients data={state.data}/>}
-          {state.isLoaded && <BurgerConstructor data={state.data}/>}
+          {state.isLoaded && <BurgerConstructor />}
+          </Context.Provider>
             </ErrorBoundary>
       </main>
     </>
