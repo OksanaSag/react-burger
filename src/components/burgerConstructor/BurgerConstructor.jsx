@@ -1,4 +1,4 @@
-import React, {useState, useContext, useReducer, useCallback} from 'react';
+import React, {useState, useContext, useReducer } from 'react';
 import BurgerConstructorStyles from './BurgerConstructor.module.css';
 import ListIngredients from '../listIngredients/ListIngredients';
 import {Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
