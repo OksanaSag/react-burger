@@ -1,52 +1,58 @@
-import React from 'react';
-import PropTypes from "prop-types";
-import ListIngredientsStyles from './ListIngredients.module.css';
-import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import React, { useRef } from "react";
+import PropTypes from 'prop-types';
+import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import listIngredientsStyle from  './ListIngredients.module.css';
+import { useDrag, useDrop } from "react-dnd";
 import { ingredientTypes } from '../utils/ingredientTypes';
 
-export default function ListIngredients ({ ingredients, bun }) {
+export default function ListIngredients ({ ingredient, index, moveIngredient, handleClose, isLocked }) {
+    const {id, key, name, price, image } = ingredient;
+    const ref = useRef(null);
+    const [, drop] = useDrop({
+        accept: 'ingredients',
+        collect(monitor) {
+          return {
+            handlerId: monitor.getHandlerId(),
+          }
+        },
+        drop(item, ) {
+          if (!ref.current) {
+            return
+          }
+          const index = item.index
+        moveIngredient(index, id)
+        },
+      });
+      const [, drag] = useDrag({
+        type: 'ingredients',
+        item: () => {
+          return { id, index }
+        },
+        collect: (monitor) => ({
+          isDragging: monitor.isDragging(),
+        }),
+      });
+      drag(drop(ref));
+      const handleDelete = () => {
+        handleClose(key);
+      }
+
     return (
-        <div>
-            {bun && 
-                <ConstructorElement
-                    text={bun.name + ' (верх)'}
-                    thumbnail={bun.image}
-                    price={bun.price}
-                    isLocked
-                    type="top"
-                    extraClass="mt-25 ml-8"
-                />
-            }
-            <ul className={ListIngredientsStyles.listIngredient + ' mb-4 mt-4'}>
-                {
-                    ingredients?.map((item) => (
-                        <li style={{ display: 'flex', alignItems: 'center'}} key={item._id}>
-                            <DragIcon />
-                            <ConstructorElement
-                                text={item.name}
-                                thumbnail={item.image}
-                                price={item.price}
-                                extraClass="ml-2"
-                            />
-                        </li>
-                    ))
-                }
-            </ul>
-            { bun &&
-                <ConstructorElement
-                    text={bun.name + ' (низ)'}
-                    thumbnail={bun.image}
-                    price={bun.price}
-                    isLocked
-                    type="bottom"
-                    extraClass="ml-8"
-                />
-            }
+        <div  ref={ref} className={listIngredientsStyle.container}>
+            <DragIcon type="primary" />
+            <ConstructorElement
+                isLocked={isLocked}
+                text={name}
+                price={price}
+                thumbnail={image}
+                handleClose={handleDelete}
+            />
         </div>
     )
-    }
-    export const ingredientPropTypes = {
-        ingredients: PropTypes.arrayOf( PropTypes.shape(ingredientTypes)),
-        bun: PropTypes.shape(ingredientTypes)
-    }
-    ListIngredients.propTypes = ingredientPropTypes
+};
+
+export const ingredientPropTypes = {
+         ingredients: PropTypes.arrayOf( PropTypes.shape(ingredientTypes)),
+         bun: PropTypes.shape(ingredientTypes)
+     }
+     ListIngredients.propTypes = ingredientPropTypes
