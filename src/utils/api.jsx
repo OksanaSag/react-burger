@@ -1,4 +1,4 @@
-import {url} from '../utils/constans'
+import {url} from './constans'
 
 const response = (res) => {
   if (res.ok) {

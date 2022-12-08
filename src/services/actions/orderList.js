@@ -1,4 +1,4 @@
-import {url} from '../../components/utils/constans'
+import {url} from '../../utils/constans'
 
 const createOrders = (ingredients) => {
     return fetch(`${url}/orders`, {

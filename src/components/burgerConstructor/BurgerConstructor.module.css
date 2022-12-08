@@ -35,3 +35,12 @@
     height: 0;
     background-color: #2F2F37;
 }
+.priceArea {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.price {
+    font-family: 'Iceland';
+    font-size: 48px;
+} 

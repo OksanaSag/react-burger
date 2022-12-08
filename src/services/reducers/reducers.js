@@ -8,6 +8,7 @@ import {
 
 const initialState = {
     items: [],
+    itemsGeting: true,
     itemsGet: true,
     itemsGetFailed: false,
     modalIngredient: {}
@@ -18,6 +19,7 @@ export const menuReducer = (state = initialState, action) => {
         case GET_INGREDIENTS_SUCCESS: {
             return {
                 ...state,
+                itemsGeting: false,
                 items: action.items
             }
         }

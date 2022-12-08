@@ -7,6 +7,7 @@ import BurgerConstructorStyle from './BurgerConstructor.module.css';
 import OrderDetail from '../OrderDetails/OrderDetails'
 import Modal from "../Modal/Modal"
 import { useDispatch, useSelector } from "react-redux";
+import { v4 as uuidv4 } from 'uuid';
 import { ADD_INGREDIENTS, CLOSE_ORDER_MODAL, createOrder, DELETE_INGREDIENT, MOVE_INGREDIENT } from "../../services/actions/orderList";
 
 export default function BurgerConstructor () {
@@ -22,7 +23,7 @@ export default function BurgerConstructor () {
         drop(ingredient) {
             dispatch({
                 type: ADD_INGREDIENTS,
-                ingredient: { ...ingredient, key: ingredient._id }
+                ingredient: {...ingredient, key: uuidv4()}
             });
         },
     });
@@ -52,7 +53,6 @@ export default function BurgerConstructor () {
                  isLocked={true}
                  price={bun.price}
                  type='top'
-                 moveIngredient={() => { }}
                  extraClass="ml-5"
              />
             ) : (<ConstructorElement
@@ -66,9 +66,8 @@ export default function BurgerConstructor () {
             <div className={BurgerConstructorStyle.listIngredient}>
                 {mains.map((element, index) => {
                     return ( 
-                    <li style={{ display: 'flex', alignItems: 'center'}} key={element._id}>     
+                    <li style={{ display: 'flex', alignItems: 'center'}} key={element.key}>     
                          <ListIngredients
-                             key={element._id}
                              index={index}
                              ingredient={element}
                              isLocked={false}
@@ -87,7 +86,6 @@ export default function BurgerConstructor () {
                     isLocked
                     type="bottom"
                     extraClass="ml-5"
-                    moveIngredient={() => { }}
                 />
                 </div>
             ) : (<ConstructorElement
@@ -100,9 +98,9 @@ export default function BurgerConstructor () {
                />)
             }
             <div className={BurgerConstructorStyle.totalPrice}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px'}}>
-                <span style={{ fontFamily: 'Iceland', fontSize: '48px'}}>{price}</span>
-                <CurrencyIcon type="primary" height="33"/>
+                <div className={BurgerConstructorStyle.priceArea}>
+                    <span className={BurgerConstructorStyle.price}>{price}</span>
+                    <CurrencyIcon type="primary" height="33"/>
                 </div>
                 <Button type="primary" size="large" onClick={openOrderModal} disabled={!order.activeButton} htmlType='submit'>
                     Оформить заказ

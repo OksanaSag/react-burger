@@ -9,15 +9,12 @@ import { useDispatch } from "react-redux";
 import { menuList } from "../../services/actions/menuList";
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import {useSelector} from "react-redux";
 
 export default function App() {
-   const [state, setState] = useState({
-     isLoaded: false,
-     hasError: false,
-     data: []
-   });
-
+  const {itemsGet, itemsGeting } = useSelector(store => store.menu)
   const dispatch = useDispatch();
+  
     useEffect(() => {
         dispatch(menuList());
     }, [dispatch])
@@ -27,12 +24,15 @@ export default function App() {
           <AppHeader />
         </header>
         <main className="main">
-            {state.hasError &&  
-              <ErrorFallback/>}
+            {!itemsGet && <ErrorFallback/>}
               <ErrorBoundary FallbackComponent={ErrorFallback}>
               <DndProvider backend={HTML5Backend}>
-              <BurgerIngredients />
-              <BurgerConstructor />
+              {itemsGeting ? (<span className="getMassage">. . . загрузка</span>) :
+              <>
+                <BurgerIngredients />
+                <BurgerConstructor />
+              </>
+              }         
               </DndProvider>
               </ErrorBoundary>
         </main>

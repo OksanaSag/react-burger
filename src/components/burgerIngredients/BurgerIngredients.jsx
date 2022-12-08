@@ -8,6 +8,7 @@ import {useSelector} from "react-redux";
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-scroll';
 import {useInView} from 'react-intersection-observer'
+import Ingredients from '../Ingredients/Ingredients';
 
 export default function BurgerIngredients  (){  
     const ingredients = useSelector(store => store.menu.items);
@@ -41,17 +42,17 @@ export default function BurgerIngredients  (){
             <h1 className={'pt-10 pb-5 text text_type_main-large'}>Соберите бургер</h1>
             <div>
             <nav className={'pt-5 pb-10'} style={{ display: 'flex' }}>
-            <Link containerId="containerElement" to="bun" spy={true} smooth={true}>
+            <Link containerId="containerElement" to="bun" spy smooth>
                 <Tab value="one" active={current === 'one'} onClick={setCurrent} inViewBun={inViewBun}>
                     Булки
                 </Tab>
             </Link>
-            <Link containerId="containerElement" to="sauce" spy={true} smooth={true}>
+            <Link containerId="containerElement" to="sauce" spy smooth>
                 <Tab value="two" active={current === 'two'} onClick={setCurrent} inViewBun={inViewSauce}>
                     Соусы
                 </Tab>
             </Link>
-            <Link containerId="containerElement" to="main" spy={true} smooth={true}>
+            <Link containerId="containerElement" to="main" spy smooth>
                 <Tab value="three" active={current === 'three'} onClick={setCurrent} inViewBun={inViewMain}>
                     Начинки
                 </Tab>
@@ -61,36 +62,15 @@ export default function BurgerIngredients  (){
             <section  id='containerElement' className={BurgerIngredientsStyles.burgerIngredient}>
                 <h2 className={' text text_type_main-medium'} id='bun'>Булки</h2>
                 <a name='one'>
-                <ul  className={BurgerIngredientsStyles.tabs + ' pt-6 pb-10 pl-4 text text_type_main-default'} ref={bunRef}>
-                    {bunArray?.map((item) => (
-                        <li onClick={() => openOrderDetails(item)} style={{ listStyleType: 'none'}} key={item._id} >
-                            <InredientList {...item} key={item._id} />
-                        </li>
-                        ))
-                    }
-                </ul>
+               <Ingredients refEl={bunRef} array={bunArray} openOrderDetails={openOrderDetails}/>
                 </a>
                 <h2 className={' text text_type_main-medium'} id='sauce'>Соусы</h2>
                 <a name='sauce'>
-                <ul className={BurgerIngredientsStyles.tabs + ' pt-6 pb-10 pl-4 text text_type_main-default'} ref={sauceRef}>
-                    {sauceArray?.map((item) => (
-                        <li onClick={() => openOrderDetails(item)} style={{ listStyleType: 'none'}} key={item._id}>
-                            <InredientList {...item} key={item._id} />
-                        </li>
-                        ))
-                    }
-                </ul>
+                <Ingredients refEl={sauceRef} array={sauceArray} openOrderDetails={openOrderDetails}/>
                 </a>
                 <h2 className={' text text_type_main-medium'} id='main'>Начинки</h2>
                 <a name='main'>
-                <ul className={BurgerIngredientsStyles.tabs + ' pt-6 pb-10 pl-4 text text_type_main-default'} ref={mainRef}>
-                    {mainArray?.map((item) => (
-                        <li onClick={() => openOrderDetails(item)} style={{ listStyleType: 'none'}} key={item._id}>
-                            <InredientList {...item} key={item._id} />
-                        </li>
-                        ))
-                    }
-                </ul>
+                <Ingredients refEl={mainRef} array={mainArray} openOrderDetails={openOrderDetails}/>
                 </a>
             </section>
             <Modal title='Детали ингредиента' open={open} onClose={() => setOpen(false)}>

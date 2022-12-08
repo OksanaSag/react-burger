@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import listIngredientsStyle from  './ListIngredients.module.css';
 import { useDrag, useDrop } from "react-dnd";
-import { ingredientTypes } from '../utils/ingredientTypes';
+import { ingredientTypes } from '../../utils/ingredientTypes';
 
 export default function ListIngredients ({ ingredient, index, moveIngredient, handleClose, isLocked }) {
     const {id, key, name, price, image } = ingredient;

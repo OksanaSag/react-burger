@@ -1,4 +1,4 @@
-import {getUrl} from '../../components/utils/api'
+import {getUrl} from '../../utils/api'
 
 export const GET_INGREDIENTS = 'GET_INGREDIENTS';
 export const GET_INGREDIENTS_SUCCESS = 'GET_INGREDIENTS_SUCCESS';
