@@ -1,11 +1,46 @@
 .container {
+    display: flex;
     width: 600px;
     padding-bottom: 52px;
     box-sizing: border-box;
+    flex-direction: column;
+    justify-content: center;
+    padding: 100px 16px 52px;
 }
 .totalPrice {
     display: flex;
     justify-content: flex-end;
-    gap: 40px;
+    gap: 41px;
     align-items: center;
+    padding-top: 40px;
+} 
+.listIngredient::-webkit-scrollbar-track {
+    background: #2F2F37;
 }
+.listIngredient::-webkit-scrollbar-thumb {
+    background-color: #8585AD;
+}
+.listIngredient {
+    overflow: scroll;
+    height: 600px;
+    gap: 16px;
+    display: flex;
+    flex-direction: column; 
+    margin: 16px 0;
+    padding-left: 0;
+    padding-right: 8px;
+}
+.listIngredient::-webkit-scrollbar {
+    width: 8px;
+    height: 0;
+    background-color: #2F2F37;
+}
+.priceArea {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.price {
+    font-family: 'Iceland';
+    font-size: 48px;
+} 

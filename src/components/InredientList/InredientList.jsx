@@ -2,10 +2,18 @@ import React from 'react';
 import InredientListStyles from './InredientList.module.css';
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
+import { useDrag } from "react-dnd";
 
 export default function InridientList (item){
+    const [,dragRef] = useDrag({
+        type: 'ingredient',
+        item: item,
+        collect: monitor => ({
+            isDrag: monitor.isDragging()
+        })
+    });
     return (
-        <div key={item._id} className={InredientListStyles.section}>
+        <div key={item._id} className={InredientListStyles.section} ref={dragRef}>
                 <img  src={item.image} className={InredientListStyles.categories} alt="" />
                 <Counter count={item.__v} size={item.__v <= 9 ? 'default' : 'small'}/>
                 <div className={InredientListStyles.fat + ' pt-1 pb-1'}>
